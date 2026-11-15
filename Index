@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#0c1822">
+  <title>PIL | Canton Fair Outcome Tracker</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1721;--navy:#122536;--gold:#edba44;--text:#f3f7f9;--muted:#a6bac8;--border:#385061}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;font:14px 'Century Gothic',Arial,sans-serif;background:var(--bg);color:var(--text)}
+    body{display:flex;flex-direction:column;min-height:100vh}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#101f2c;border-top:4px solid var(--gold);border-bottom:1px solid var(--border);padding:14px 22px;min-height:75px}
+    .brand{display:flex;align-items:center;gap:12px}.mark{display:grid;place-items:center;color:#17242a;background:var(--gold);width:34px;height:34px;border-radius:10px;font-size:17px;font-weight:900}
+    .brand strong{font-size:16px;display:block;letter-spacing:-.01em}.brand small{font-size:11px;color:var(--muted);display:block;margin-top:4px}
+    .link{color:#fff2c8;text-decoration:none;border:1px solid #9d7c3a;border-radius:8px;padding:10px 14px;white-space:nowrap;font-size:12px;font-weight:700;background:#3d3322}.link:hover{background:#524328}
+    .wrap{flex:1;display:flex;flex-direction:column;padding:15px;gap:10px;min-height:0}
+    .hint{font-size:12px;color:#b8cad5;padding:0 6px}.hint b{color:#f9df9f}
+    .framebox{border:1px solid var(--border);background:#122637;border-radius:12px;overflow:hidden;min-height:630px;flex:1;position:relative}
+    iframe{display:block;width:100%;height:calc(100vh - 150px);min-height:630px;border:0;background:#122637}
+    .setup{display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:#142735;text-align:center;padding:25px}
+    .setup.show{display:flex}.setup-inner{max-width:530px}.setup strong{display:block;font-size:20px;margin-bottom:10px}.setup p{color:#b7cad5;line-height:1.6}
+    code{font-family:Consolas,monospace;color:#f6d68a}footer{padding:0 22px 13px;color:#839dac;font-size:11px}
+    @media(max-width:560px){.top{padding:12px;flex-wrap:wrap}.link{flex:1;text-align:center}.wrap{padding:8px}.framebox{min-height:650px}iframe{height:calc(100vh - 170px);min-height:650px}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><div class="mark" aria-hidden="true">P</div><div><strong>PIL · Canton Fair Outcome Tracker</strong><small>Authorized FMCG team access</small></div></div>
+    <a id="open-direct" class="link" href="#" target="_blank" rel="noopener noreferrer">Open app directly</a>
+  </header>
+  <main class="wrap">
+    <div class="hint">Only approved Google accounts listed as <b>Active = Yes</b> in the tracker’s <b>Users</b> sheet are permitted to view customer records. If the embedded sign-in fails, use <b>Open app directly</b>.</div>
+    <div class="framebox">
+      <iframe id="tracker" title="Pacific Inter-Link Canton Fair Outcome Tracker" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="clipboard-read; clipboard-write"></iframe>
+      <div class="setup" id="setup"><div class="setup-inner"><strong>Connect the tracker</strong><p>The Google Apps Script deployment URL is configured. Open the app directly if your browser blocks sign-in inside the iframe.</p></div></div>
+    </div>
+  </main>
+  <footer>Pacific Inter-Link · Internal commercial tracking · Follow-ups are sent manually</footer>
+  <script>
+    // Configured with the supplied Google Apps Script Web App deployment URL.
+    const APP_URL = 'https://script.google.com/macros/s/AKfycbwq9UdMujAsVB_1hFiOCJUgY1PI_b2q-nUW9hT0Y5uUO3hAXBElwdBwxNtEnSlOLiNX/exec';
+    const valid = /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec(?:\?.*)?$/i.test(APP_URL);
+    if (valid) {
+      document.getElementById('tracker').src = APP_URL;
+      document.getElementById('open-direct').href = APP_URL;
+    } else {
+      document.getElementById('setup').classList.add('show');
+      document.getElementById('open-direct').removeAttribute('href');
+      document.getElementById('tracker').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
